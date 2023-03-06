@@ -24,8 +24,6 @@ function saveData(e) {
   infoName.textContent = popupName.value;
   infoDescription.textContent = popupDescription.value;
   e.preventDefault();
-  console.log(infoName);
-  console.log(infoDescription);
 }
 
 submitForm.addEventListener("submit", saveData);
