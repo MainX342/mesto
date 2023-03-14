@@ -7,6 +7,7 @@
     <meta name="description" content="Проект Яндекс по основам JavaScript" />
     <link rel="stylesheet" href="./pages/index.css" />
     <title>Проект Место</title>
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
   </head>
   <body class="page">
     <div class="page__container">
@@ -37,7 +38,10 @@
     </div>
     <div class="popup popup_profile-edit">
       <div class="popup__container">
-        <button class="popup__close-btn" type="button"></button>
+        <button
+          class="popup__close-btn popup__close-btn_profile"
+          type="button"
+        ></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form popup__form_edit" name="popup-form-edit">
           <input
@@ -58,7 +62,10 @@
     </div>
     <div class="popup popup_add-card">
       <div class="popup__container">
-        <button class="popup__close-btn" type="button"></button>
+        <button
+          class="popup__close-btn popup__close-btn_card"
+          type="button"
+        ></button>
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__form popup__form_add" name="popup-form-add">
           <input
@@ -79,7 +86,10 @@
     </div>
     <div class="popup popup_image">
       <div class="popup__image-container">
-        <button class="popup__close-btn" type="button"></button>
+        <button
+          class="popup__close-btn popup__close-btn_image"
+          type="button"
+        ></button>
         <figure class="popup__figure">
           <img
             src="#"
@@ -100,6 +110,7 @@
         </div>
       </li>
     </template>
+    <script src="./scripts/cards.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
