@@ -28,85 +28,18 @@
           <button type="button" class="profile__add-btn"></button>
         </section>
         <section class="elements" aria-label="Фотографии">
-          <ul class="elements__list">
-            <li class="elements__card">
-              <img
-                src="./images/karachaevsk.png"
-                alt="Фотография Карачаевска"
-                class="elements__image"
-              />
-              <div class="elements__description">
-                <h2 class="elements__title">Карачаевск</h2>
-                <button class="elements__like" type="button"></button>
-              </div>
-            </li>
-            <li class="elements__card">
-              <img
-                src="./images/elbrus.png"
-                alt="Фотография горы Эльбрус"
-                class="elements__image"
-              />
-              <div class="elements__description">
-                <h2 class="elements__title">Гора Эльбрус</h2>
-                <button class="elements__like" type="button"></button>
-              </div>
-            </li>
-            <li class="elements__card">
-              <img
-                src="./images/dombai.png"
-                alt="Фотография Домбая"
-                class="elements__image"
-              />
-              <div class="elements__description">
-                <h2 class="elements__title">Домбай</h2>
-                <button class="elements__like" type="button"></button>
-              </div>
-            </li>
-            <li class="elements__card">
-              <img
-                src="./images/perm_krai_medium.jpg"
-                alt="Фотография водопада в Пермском крае"
-                class="elements__image"
-              />
-              <div class="elements__description">
-                <h2 class="elements__title">Пермский край</h2>
-                <button class="elements__like" type="button"></button>
-              </div>
-            </li>
-            <li class="elements__card">
-              <img
-                src="./images/ivanovo_medium.jpg"
-                alt="Фотография многоэтажного дома"
-                class="elements__image"
-              />
-              <div class="elements__description">
-                <h2 class="elements__title">Иваново</h2>
-                <button class="elements__like" type="button"></button>
-              </div>
-            </li>
-            <li class="elements__card">
-              <img
-                src="./images/moscow_medium.jpg"
-                alt="Фотография Храма Василия Блаженного"
-                class="elements__image"
-              />
-              <div class="elements__description">
-                <h2 class="elements__title">Москва</h2>
-                <button class="elements__like" type="button"></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="elements__list"></ul>
         </section>
       </main>
       <footer class="footer page__footer">
         <p class="footer__copyright">© 2023 Mesto Russia</p>
       </footer>
     </div>
-    <div class="popup">
+    <div class="popup popup_profile-edit">
       <div class="popup__container">
         <button class="popup__close-btn" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="popup-form">
+        <form class="popup__form popup__form_edit" name="popup-form-edit">
           <input
             type="text"
             class="popup__input popup__input_field_name"
@@ -123,6 +56,50 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_add-card">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form popup__form_add" name="popup-form-add">
+          <input
+            type="text"
+            class="popup__input popup__input_field_name-place"
+            placeholder="Название"
+            name="name"
+          />
+          <input
+            type="url"
+            class="popup__input popup__input_field_link"
+            placeholder="Ссылка на картинку"
+            name="link"
+          />
+          <button type="submit" class="popup__save-btn">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_image">
+      <div class="popup__image-container">
+        <button class="popup__close-btn" type="button"></button>
+        <figure class="popup__figure">
+          <img
+            src="#"
+            alt="Увеличенное изображение"
+            class="popup__image-enlarged"
+          />
+          <figcaption class="popup__image-figcaption"></figcaption>
+        </figure>
+      </div>
+    </div>
+    <template id="card">
+      <li class="elements__card">
+        <img src="" alt="" class="elements__image" />
+        <button class="elements__delete-btn" type="button"></button>
+        <div class="elements__description">
+          <h2 class="elements__title"></h2>
+          <button class="elements__like" type="button"></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
