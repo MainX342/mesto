@@ -11,7 +11,6 @@ const buttonCloseAddCardPopup = document.querySelector(
   ".popup__close-btn_card"
 );
 const buttonCloseImagePopup = document.querySelector(".popup__close-btn_image");
-const closePopupButton = document.querySelectorAll(".popup__close-btn"); // удалить
 const profileName = document.querySelector(".profile__info-name");
 const profileDescription = document.querySelector(".profile__info-description");
 const profileForm = document.querySelector(".popup__form_edit");
@@ -26,9 +25,10 @@ const popupInputCardTitle = document.querySelector(
 const popupInputCardImage = document.querySelector(".popup__input_field_link");
 const cardTemplate = document.querySelector("#card").content;
 const cardTemplateElement = cardTemplate.querySelector(".elements__card");
-const cardList = document.querySelector(".elements__list");
+const cardsContainer = document.querySelector(".elements__list");
 const popupEnlargedImage = document.querySelector(".popup__image-enlarged");
 const popupImageFigcaption = document.querySelector(".popup__image-figcaption");
+const popupList = document.querySelectorAll(".popup");
 
 // Функции
 const openPopup = (popup) => {
@@ -39,7 +39,7 @@ const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
 };
 
-const getProfileInfo = () => {
+const initProfileForm = () => {
   popupInputName.value = profileName.textContent;
   popupInputDescription.value = profileDescription.textContent;
 };
@@ -50,40 +50,26 @@ const setProfileInfo = () => {
 };
 
 const clearCardInput = () => {
-  popupInputCardTitle.value = "";
-  popupInputCardImage.value = "";
+  cardForm.reset();
 };
 
-const handleProfilePopup = () => {
+const handleOpenProfilePopup = () => {
   openPopup(popupProfile);
-  getProfileInfo();
+  initProfileForm();
 };
-const handleAddCardPopup = () => {
+const handleOpenAddCardPopup = () => {
   openPopup(popupAddCard);
   clearCardInput();
 };
-const handleCloseProfilePopup = () => closePopup(popupProfile);
-const handleCloseAddCardPopup = () => closePopup(popupAddCard);
-const handleCloseImagePopup = () => closePopup(popupImage);
 
-const handleCloseProfilePopupByClickOnOverlay = (e) => {
-  if (e.target !== e.currentTarget) {
-    return;
-  }
-  handleCloseProfilePopup();
-};
-const handleCloseAddCardPopupByClickOnOverlay = (e) => {
-  if (e.target !== e.currentTarget) {
-    return;
-  }
-  handleCloseAddCardPopup();
-};
-const handleCloseImagePopupByClickOnOverlay = (e) => {
-  if (e.target !== e.currentTarget) {
-    return;
-  }
-  handleCloseImagePopup();
-};
+popupList.forEach((popup) => {
+  popup.addEventListener("click", (e) => {
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+    closePopup(popup);
+  });
+});
 
 const handleProfileFormSubmit = (e) => {
   closePopup(popupProfile);
@@ -97,7 +83,7 @@ const handleCardFormSubmit = (e) => {
     name: popupInputCardTitle.value,
     link: popupInputCardImage.value,
   });
-  cardList.prepend(newCardCreate);
+  cardsContainer.prepend(newCardCreate);
   e.preventDefault();
 };
 
@@ -126,17 +112,18 @@ const createCard = (cardData) => {
 
 initialCards.forEach((element) => {
   const newCard = createCard(element);
-  cardList.append(newCard);
+  cardsContainer.append(newCard);
 });
 
 // Слушатели
-buttonOpenEditInfoPopup.addEventListener("click", handleProfilePopup);
-buttonOpenAddCardPopup.addEventListener("click", handleAddCardPopup);
-buttonCloseEditInfoPopup.addEventListener("click", handleCloseProfilePopup);
-buttonCloseAddCardPopup.addEventListener("click", handleCloseAddCardPopup);
-buttonCloseImagePopup.addEventListener("click", handleCloseImagePopup);
-popupProfile.addEventListener("click", handleCloseProfilePopupByClickOnOverlay);
-popupAddCard.addEventListener("click", handleCloseAddCardPopupByClickOnOverlay);
-popupImage.addEventListener("click", handleCloseImagePopupByClickOnOverlay);
+buttonOpenEditInfoPopup.addEventListener("click", handleOpenProfilePopup);
+buttonOpenAddCardPopup.addEventListener("click", handleOpenAddCardPopup);
+buttonCloseEditInfoPopup.addEventListener("click", () =>
+  closePopup(popupProfile)
+);
+buttonCloseAddCardPopup.addEventListener("click", () =>
+  closePopup(popupAddCard)
+);
+buttonCloseImagePopup.addEventListener("click", () => closePopup(popupImage));
 cardForm.addEventListener("submit", handleCardFormSubmit);
 profileForm.addEventListener("submit", handleProfileFormSubmit);
