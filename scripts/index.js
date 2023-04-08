@@ -33,10 +33,12 @@ const popupList = document.querySelectorAll(".popup");
 // Функции
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
+  document.addEventListener('keydown', closePopupByEscape);
 };
 
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
+  document.removeEventListener('keydown', closePopupByEscape);
 };
 
 const initProfileForm = () => {
@@ -51,15 +53,22 @@ const setProfileInfo = () => {
 
 const clearCardInput = () => {
   cardForm.reset();
+  resetErrorsOnOpen(cardForm);
 };
 
+const clearProfileInput = () => {
+  profileForm.reset();
+  resetErrorsOnOpen(profileForm);
+}
+
 const handleOpenProfilePopup = () => {
-  openPopup(popupProfile);
+  clearProfileInput();
   initProfileForm();
+  openPopup(popupProfile);
 };
 const handleOpenAddCardPopup = () => {
-  openPopup(popupAddCard);
   clearCardInput();
+  openPopup(popupAddCard);
 };
 
 popupList.forEach((popup) => {
@@ -69,7 +78,14 @@ popupList.forEach((popup) => {
     }
     closePopup(popup);
   });
-});
+})
+
+const closePopupByEscape = (e) => {
+  if (e.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  }
+}
 
 const handleProfileFormSubmit = (e) => {
   closePopup(popupProfile);
