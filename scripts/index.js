@@ -121,6 +121,8 @@ popupList.forEach((popup) => {
   });
 });
 
+
+// Слушатели
 buttonOpenEditInfoPopup.addEventListener("click", handleOpenProfilePopup);
 buttonOpenAddCardPopup.addEventListener("click", handleOpenAddCardPopup);
 buttonCloseEditInfoPopup.addEventListener("click", () =>
