@@ -73,8 +73,8 @@ export class FormValidator {
       const errorElement = this._form.querySelector(`${this._inputErrorTemplate}_${inputElement.id}`);
       if (!inputElement.validity.valid) {
         this._hideInputError(inputElement, errorElement);
-        this._disableButton ();
       }
     })
+    this._disableButton ()
   }
 };

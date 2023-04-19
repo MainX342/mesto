@@ -8,13 +8,9 @@ const popupAddCard = document.querySelector(".popup_add-card");
 const popupImage = document.querySelector(".popup_image");
 const buttonOpenEditInfoPopup = document.querySelector(".profile__info-edit");
 const buttonOpenAddCardPopup = document.querySelector(".profile__add-btn");
-const buttonCloseEditInfoPopup = document.querySelector(
-  ".popup__close-btn_profile"
-);
-const buttonCloseAddCardPopup = document.querySelector(
-  ".popup__close-btn_card"
-);
-const buttonCloseImagePopup = document.querySelector(".popup__close-btn_image");
+//const buttonCloseEditInfoPopup = document.querySelector(".popup__close-btn_profile");
+//const buttonCloseAddCardPopup = document.querySelector(".popup__close-btn_card");
+//const buttonCloseImagePopup = document.querySelector(".popup__close-btn_image");
 const profileName = document.querySelector(".profile__info-name");
 const profileDescription = document.querySelector(".profile__info-description");
 const profileForm = document.querySelector(".popup__form_edit");
@@ -113,24 +109,21 @@ cardFormValidation.enableValidation();
 
 // Закрытие попапов по клику на оверлей
 popupList.forEach((popup) => {
-  popup.addEventListener("click", (e) => {
-    if (e.target !== e.currentTarget) {
-      return;
+  popup.addEventListener("mousedown", (e) => {
+    if (e.target === e.currentTarget) {
+      closePopup(popup);
     }
-    closePopup(popup);
   });
-});
+  const closeButton = popup.querySelector('.popup__close-btn');
+  closeButton.addEventListener("click", () => closePopup(popup));
 
+});
 
 // Слушатели
 buttonOpenEditInfoPopup.addEventListener("click", handleOpenProfilePopup);
 buttonOpenAddCardPopup.addEventListener("click", handleOpenAddCardPopup);
-buttonCloseEditInfoPopup.addEventListener("click", () =>
-  closePopup(popupProfile)
-);
-buttonCloseAddCardPopup.addEventListener("click", () =>
-  closePopup(popupAddCard)
-);
-buttonCloseImagePopup.addEventListener("click", () => closePopup(popupImage));
+//buttonCloseEditInfoPopup.addEventListener("click", () => closePopup(popupProfile));
+//buttonCloseAddCardPopup.addEventListener("click", () => closePopup(popupAddCard));
+//buttonCloseImagePopup.addEventListener("click", () => closePopup(popupImage));
 cardForm.addEventListener("submit", handleCardFormSubmit);
 profileForm.addEventListener("submit", handleProfileFormSubmit);

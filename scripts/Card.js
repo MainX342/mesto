@@ -1,5 +1,3 @@
-import { handleOpenPopupImage } from "./utils.js";
-
 export class Card {
   constructor (cardData, templateSelector, handleOpenPopupImage) {
     this._name = cardData.name;
@@ -18,12 +16,13 @@ export class Card {
     return cardElement;
   }
 
-  _handleDeleteCard = (e) => {
-    e.target.closest(".elements__card").remove();
+  _handleDeleteCard = () => {
+    this._element.remove();
+    this._element = null;
   }
 
-  _handleLike = (e) => {
-    e.target.classList.toggle("elements__like_active");
+  _handleLike = () => {
+    this._cardLike.classList.toggle("elements__like_active");
   }
 
   _handleOpenEnlargedImagePopup = () => {
