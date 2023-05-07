@@ -16,12 +16,12 @@ const cardFormValidation = new FormValidator(configValidation, cardForm);
 cardFormValidation.enableValidation();
 
 const userInfo = new UserInfo(configInfo);
-const PopupImage = new PopupWithImage(popupImageSelector);
+const popupImage = new PopupWithImage(popupImageSelector);
 
 const section = new Section({
   items: initialCards,
   renderer: (cardData) => {
-    const card = new Card (cardData, '#card', PopupImage.open);
+    const card = new Card (cardData, '#card', popupImage.open);
     const cardElement = card.generateCard();
     return cardElement;
   }
@@ -50,7 +50,7 @@ const handleOpenAddCardPopup = () => {
 };
 
 // Слушатели
-PopupImage.setEventListeners();
+popupImage.setEventListeners();
 popupProfileForm.setEventListeners();
 popupAddCardForm.setEventListeners();
 buttonOpenEditInfoPopup.addEventListener("click", handleOpenProfilePopup);
