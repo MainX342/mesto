@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   constructor (cardData, templateSelector, handleOpenPopupImage) {
     this._name = cardData.name;
     this._link = cardData.link;
@@ -26,7 +26,7 @@ export class Card {
   }
 
   _handleOpenEnlargedImagePopup = () => {
-    handleOpenPopupImage({
+    this._handleOpenPopupImage({
       name: this._name,
       link: this._link
     })
@@ -43,10 +43,11 @@ export class Card {
     this._cardImage = this._element.querySelector('.elements__image');
     this._cardDelete = this._element.querySelector(".elements__delete-btn");
     this._cardLike = this._element.querySelector(".elements__like");
+    this._cardTitle = this._element.querySelector(".elements__title");
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    this._element.querySelector(".elements__title").textContent = this._name;
+    this._cardTitle.textContent = this._name;
 
     return this._element;
   }

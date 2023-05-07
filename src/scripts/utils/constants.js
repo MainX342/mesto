@@ -36,4 +36,19 @@ const configValidation = {
   errorClass: 'popup__error_visible'
 };
 
-export { initialCards, configValidation };
+// Объект для пользователя
+const configInfo = {
+  profileNameSelector: ".profile__info-name",
+  profileDescriptionSelector: ".profile__info-description",
+}
+
+const profileForm = document.querySelector(".popup__form_edit");
+const cardForm = document.querySelector(".popup__form_add");
+const buttonOpenEditInfoPopup = document.querySelector(".profile__info-edit");
+const buttonOpenAddCardPopup = document.querySelector(".profile__add-btn");
+const cardsContainerSelector = '.elements__list';
+const popupProfileSelector = '.popup_profile-edit';
+const popupAddCardSelector = '.popup_add-card';
+const popupImageSelector = '.popup_image';
+
+export { initialCards, configValidation, configInfo, profileForm, cardForm, buttonOpenEditInfoPopup, buttonOpenAddCardPopup, cardsContainerSelector, popupProfileSelector, popupAddCardSelector, popupImageSelector };
