@@ -1,31 +1,3 @@
-// Начальные карточки мест
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 // Объект для валидации
 const configValidation = {
   inputSelector: '.popup__input',
@@ -40,15 +12,31 @@ const configValidation = {
 const configInfo = {
   profileNameSelector: ".profile__info-name",
   profileDescriptionSelector: ".profile__info-description",
+  profileAvatarSelector: ".profile__avatar",
 }
 
-const profileForm = document.querySelector(".popup__form_edit");
-const cardForm = document.querySelector(".popup__form_add");
+const buttonOpenEditAvatarPopup = document.querySelector(".profile__avatar-edit");
 const buttonOpenEditInfoPopup = document.querySelector(".profile__info-edit");
 const buttonOpenAddCardPopup = document.querySelector(".profile__add-btn");
 const cardsContainerSelector = '.elements__list';
+const popupEditAvatarSelector = '.popup_edit-avatar';
 const popupProfileSelector = '.popup_profile-edit';
 const popupAddCardSelector = '.popup_add-card';
 const popupImageSelector = '.popup_image';
+const popupDeleteCardSelector = '.popup_delete-card';
+const formsValidator = {};
 
-export { initialCards, configValidation, configInfo, profileForm, cardForm, buttonOpenEditInfoPopup, buttonOpenAddCardPopup, cardsContainerSelector, popupProfileSelector, popupAddCardSelector, popupImageSelector };
+export {
+  configValidation,
+  configInfo,
+  buttonOpenEditAvatarPopup,
+  buttonOpenEditInfoPopup,
+  buttonOpenAddCardPopup,
+  cardsContainerSelector,
+  popupEditAvatarSelector,
+  popupProfileSelector,
+  popupAddCardSelector,
+  popupImageSelector,
+  popupDeleteCardSelector,
+  formsValidator
+};
