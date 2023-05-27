@@ -5,7 +5,7 @@ import FormValidator from "../scripts/components/FormValidator.js";
 import Section from "../scripts/components/Section.js";
 import UserInfo from "../scripts/components/UserInfo.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
-import PopupWithDeleteForm from '../scripts/components/PopupWithDeleteForm.js';
+import PopupWithConfirmation from '../scripts/components/PopupWithConfirmation.js';
 import Api from '../scripts/components/Api.js';
 import {
   configValidation,
@@ -67,8 +67,8 @@ const popupEditAvatarForm = new PopupWithForm(popupEditAvatarSelector, async (it
 
 const popupAddCardForm = new PopupWithForm(popupAddCardSelector, async (items) => {
   try {
-    const [userData, cardData] = await Promise.all([api.getInfo(), api.addNewCardToServer(items)]);
-    cardData.myid = userData._id;
+    const cardData = await api.addNewCardToServer(items);
+    cardData.myid = userInfo.getUserId();
     section.addItem(creatNewCard(cardData));
     popupAddCardForm.close();
   } catch (error) {
@@ -78,7 +78,7 @@ const popupAddCardForm = new PopupWithForm(popupAddCardSelector, async (items) =
   }
 });
 
-const popupDeleteCardForm = new PopupWithDeleteForm(popupDeleteCardSelector, async ({ card, cardId }) => {
+const popupDeleteCardForm = new PopupWithConfirmation(popupDeleteCardSelector, async ({ card, cardId }) => {
   try {
     await api.deleteCardFromServer(cardId);
     card.deleteCard();
@@ -86,7 +86,7 @@ const popupDeleteCardForm = new PopupWithDeleteForm(popupDeleteCardSelector, asy
   } catch (error) {
     console.error(`Ошибка при удалении карточки ${error}`);
   } finally {
-    popupDeleteCardForm.setDeleteButtonText();
+    popupDeleteCardForm.setButtonText();
   }
 });
 
@@ -153,6 +153,7 @@ async function loadInitialData() {
     const [userData, cardData] = await Promise.all([api.getInfo(), api.getInitialCards()]);
     cardData.forEach(element => element.myid = userData._id);
     userInfo.setUserInfo({ username: userData.name, description: userData.about, avatar: userData.avatar });
+    userInfo.setUserId(userData._id);
     section.renderItems(cardData.reverse());
   } catch (error) {
     console.error(`Ошибка при создании начальных данных ${error}`);

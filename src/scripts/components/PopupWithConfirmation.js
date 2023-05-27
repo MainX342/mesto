@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-export default class PopupWithDeleteForm extends Popup{
+export default class PopupWithConfirmation extends Popup{
   constructor (popupSelector, submitForm) {
     super(popupSelector);
     this._submitForm = submitForm;
@@ -9,17 +9,21 @@ export default class PopupWithDeleteForm extends Popup{
     this._submitButtonText = this._submitButton.textContent;
   }
 
+  renderLoading() {
+    this._submitButton.textContent = `${this._submitButton.textContent}...`
+  }
+
+  setButtonText() {
+    this._submitButton.textContent = this._submitButtonText;
+  }
+
   setEventListeners() {
     super.setEventListeners()
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._submitButton.textContent = `${this._submitButton.textContent}...`
+      this.renderLoading();
       this._submitForm({ card: this._card, cardId: this._cadrId })
     })
-  }
-
-  setDeleteButtonText() {
-    this._submitButton.textContent = this._submitButtonText;
   }
 
   open = ({ card, cardId }) => {

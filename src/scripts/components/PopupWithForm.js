@@ -24,17 +24,21 @@ export default class PopupWithForm extends Popup {
     })
   }
 
-  setEventListeners() {
-    super.setEventListeners();
-    this._form.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      this._submitButton.textContent = `${this._submitButton.textContent}...`
-      this._submitForm(this._getInputValues());
-    });
+  renderLoading() {
+    this._submitButton.textContent = `${this._submitButton.textContent}...`
   }
 
   setButtonText() {
     this._submitButton.textContent = this._submitButtonText;
+  }
+
+  setEventListeners() {
+    super.setEventListeners();
+    this._form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this.renderLoading();
+      this._submitForm(this._getInputValues());
+    });
   }
 
   close() {
